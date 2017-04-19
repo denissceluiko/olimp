@@ -19,6 +19,7 @@ class CreateRoomsTable extends Migration
             $table->integer('olympiad_id')->unsigned();
             $table->integer('seats');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('olympiad_id')->references('id')->on('olympiads')->onUpdate('cascade');
         });

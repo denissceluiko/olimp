@@ -19,6 +19,7 @@ class CreateParticipantsTable extends Migration
             $table->integer('olympiad_id')->unsigned();
             $table->integer('room_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('olympiad_id')->references('id')->on('olympiads')->onDelete('cascade')->onUpdate('cascade');

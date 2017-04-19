@@ -17,8 +17,8 @@
                                 </tr>
                                 @forelse($rooms as $room)
                                     <tr>
-                                        <td>{{ $room->id }}</td>
-                                        <td>{{ $room->seats }}</td>
+                                        <td>{{ $room["id"] }}</td>
+                                        <td>{{ $room["seats"] }}</td>
                                         <td>
                                             <a class="btn btn-default" href="{{ url('/rooms/'.$olympiad->id.'/edit') }}">Edit</a>
                                         </td>

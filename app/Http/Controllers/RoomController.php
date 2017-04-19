@@ -29,12 +29,14 @@ class RoomController extends Controller
     public function index()
     {
         $this->authorize('room.index');
-        $res = null;
+        //$res = null;
 
-        if (session('active.olimp')) {
-             $res = Olympiad::findOrFail(2)->rooms();
-        }
-        return view('room.index', ['rooms' => $res]);
+        //if (session('active.olimp')) {
+            //$res = Olympiad::findOrFail(1)->rooms();
+            $res = Room::all();
+            //$res = [["id" => 3, "seats" => 12]];
+        //}
+        return view('room.index', ['rooms' => $res, 'olympiad' => Olympiad::findOrFail(2)]);
     }
 
     /**

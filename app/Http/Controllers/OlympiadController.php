@@ -146,11 +146,9 @@ class OlympiadController extends Controller
         return back();
     }
 
+
     public static function getActive() {
-        if (strlen(session('active.olimp'))) {
-            $res = Olympiad::find(session('active.olimp'));
-            return '<a href="'.url('olympiads/'.$res->id).'" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">'.$res->name.'</a>';
-        }
-        return '';
+
+        return [];
     }
 }

@@ -27,6 +27,7 @@ class CreateSchoolsTable extends Migration
             $table->string('language', 30)->nullable();
             $table->integer('students')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

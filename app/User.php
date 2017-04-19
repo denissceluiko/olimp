@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Larapacks\Authorization\Traits\UserRolesTrait;
@@ -10,6 +11,10 @@ class User extends Authenticatable
 {
     use Notifiable;
     use UserRolesTrait;
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
+
 
     /**
      * The attributes that are mass assignable.
@@ -28,4 +33,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    function activeOlympiad() {
+        return $this->belongsTo('App\Olympiad');
+    }
 }

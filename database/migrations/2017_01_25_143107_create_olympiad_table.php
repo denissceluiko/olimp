@@ -18,6 +18,7 @@ class CreateOlympiadTable extends Migration
             $table->string('name', 100);
             $table->date('date');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

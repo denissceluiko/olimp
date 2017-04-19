@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Olympiad;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -80,5 +82,21 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getOlympiad() {
+        if (!Auth::check() || !Auth::user()->activeOlympiad ) return null;
+        return Olympiad::find( Auth::user()->activeOlympiad )->first();
+    }
+
+    public function setOlympiad($id) {
+        if (Auth::check() == false) return null;
+
+        $res = Olympiad::find($id)->first();
+        if ($res) {
+            $user = Auth::user();
+            $user->activeOlympiad = $id;
+            $user->save();
+        }
     }
 }
