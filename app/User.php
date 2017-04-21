@@ -34,7 +34,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    function activeOlympiad() {
-        return $this->belongsTo('App\Olympiad');
+    public function activeOlympiad() {
+        return $this->belongsTo(Olympiad::class);
     }
 }
