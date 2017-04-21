@@ -8,23 +8,42 @@
                     <div class="panel-heading">@lang('labels.room.list')</div>
 
                     <div class="panel-body">
-                        @if(session('active.olimp'))
-                            <table class="table-striped col-md-12">
+                        @if(Auth::user()->activeOlympiad)
+                            <div class="panel">
+                                {{ Form::open(['route' => 'rooms.store', 'method' => 'post', 'class' => 'form-inline']) }}
+                                {{ Form::hidden('olympiad', Auth::user()->activeOlympiad->id) }}
+                                <div class="form-group">
+                                    {{ Form::label('room', trans('labels.room.room_id'), ['class' => 'control-label']) }}
+                                    {{ Form::text('room', null, ['class' => 'form-control', 'required']) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ Form::label('seats', trans('labels.room.seats'), ['class' => 'control-label']) }}
+                                    {{ Form::text('seats', null, ['class' => 'form-control', 'required']) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ Form::submit(trans('labels.add'), ['class' => 'btn btn-primary']) }}
+                                </div>
+                                {{ Form::close() }}
+                            </div>
+                            <table class="table table-striped col-md-12">
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Seats</th>
+                                    <th>@lang('labels.room.room')</th>
+                                    <th>@lang('labels.room.seats')</th>
                                     <th></th>
                                 </tr>
                                 @forelse($rooms as $room)
                                     <tr>
-                                        <td>{{ $room["id"] }}</td>
-                                        <td>{{ $room["seats"] }}</td>
-                                        <td>
+                                        <td>{{ $room->room }}</td>
+                                        <td>{{ $room->seats }}</td>
+                                        <td class="text-right">
                                             <a class="btn btn-default" href="{{ url('/rooms/'.$olympiad->id.'/edit') }}">Edit</a>
+                                            {{ Form::open(['method' => 'delete', 'route' => ['rooms.destroy', $room->id], 'style' => 'display:inline-block;' ]) }}
+                                            {{ Form::submit(trans('labels.delete'), ['class' => 'btn btn-danger']) }}
+                                            {{ Form::close() }}
                                         </td>
                                     </tr>
                                 @empty
-                                    <tr><td colspan="3">@lang('labels.olympiads.empty')</td></tr>
+                                    <tr><td colspan="3">@lang('labels.room.empty')</td></tr>
                                 @endforelse
                             </table>
                         @else

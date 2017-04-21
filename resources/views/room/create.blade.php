@@ -9,7 +9,7 @@
 
                     <div class="panel-body">
                         {{ Form::open(['url' => 'rooms', 'method' => 'post']) }}
-                        {{ Form::hidden('olympiad', session('active.olimp')) }}
+                        {{ Form::hidden('olympiad', Auth::user()->activeOlympiad->id) }}
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="room" class="col-md-4 control-label">Room ID</label>
 

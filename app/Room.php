@@ -12,6 +12,6 @@ class Room extends Model
     protected $dates = ['deleted_at'];
 
     public function olympiad() {
-        return $this->belongsTo('App\Olympiad');
+        return $this->belongsTo(Olympiad::class);
     }
 }

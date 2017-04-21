@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Olympiad;
 use App\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -29,14 +30,9 @@ class RoomController extends Controller
     public function index()
     {
         $this->authorize('room.index');
-        //$res = null;
+        $res = Auth::user()->activeOlympiad->rooms()->get();
 
-        //if (session('active.olimp')) {
-            //$res = Olympiad::findOrFail(1)->rooms();
-            $res = Room::all();
-            //$res = [["id" => 3, "seats" => 12]];
-        //}
-        return view('room.index', ['rooms' => $res, 'olympiad' => Olympiad::findOrFail(2)]);
+        return view('room.index', ['rooms' => $res, 'olympiad' => Auth::user()->activeOlympiad]);
     }
 
     /**
@@ -139,6 +135,7 @@ class RoomController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Room::destroy($id);
+        return back();
     }
 }
