@@ -8,7 +8,7 @@
                     <div class="panel-heading">@lang('labels.olympiad.list')</div>
 
                     <div class="panel-body">
-                        <table class="table-striped col-md-12">
+                        <table class="table table-striped col-md-12">
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>

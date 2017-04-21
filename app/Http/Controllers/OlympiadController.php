@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Olympiad;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -141,14 +143,8 @@ class OlympiadController extends Controller
      *
      * @param $id
      */
-    public function select($id) {
-        session(['active.olimp' => $id]);
+    public function select(Olympiad $olympiad) {
+        Auth::user()->activeOlympiad()->associate($olympiad)->save();
         return back();
-    }
-
-
-    public static function getActive() {
-
-        return [];
     }
 }

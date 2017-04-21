@@ -12,10 +12,14 @@ class Olympiad extends Model
     protected $dates = ['deleted_at'];
 
     public function rooms() {
-        return $this->hasMany('App\Room');
+        return $this->hasMany(Room::class);
     }
     
     public function participants() {
-        return $this->hasMany('App\Participant');
+        return $this->hasMany(Participant::class);
+    }
+
+    public function users() {
+        return $this->hasMany(User::class);
     }
 }
