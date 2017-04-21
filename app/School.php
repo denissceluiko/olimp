@@ -9,9 +9,11 @@ class School extends Model
 {
     use SoftDeletes;
 
+    protected $guarded = [];
+
     protected $dates = ['deleted_at'];
 
     public function students() {
-        return $this->hasMany('App\Student');
+        return $this->hasMany(App\Student::class);
     }
 }

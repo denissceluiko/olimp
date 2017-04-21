@@ -49,7 +49,13 @@ class SchoolController extends Controller
     public function store(Request $request)
     {
         $this->authorize('school.create');
-        
+
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        School::create($request->only(['name']));
+        return back();
     }
 
     /**
