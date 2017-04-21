@@ -11,17 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/lang/{language}', function($language) {
     App::setLocale($language);
 });
-
-Route::get('/home', 'HomeController@index');
 
 Route::get('/olympiads/{olympiad}/select/', 'OlympiadController@select');
 Route::resource('/olympiads', 'OlympiadController');
