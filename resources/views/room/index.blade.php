@@ -6,7 +6,6 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">@lang('labels.room.list')</div>
-
                     <div class="panel-body">
                         @if(Auth::user()->activeOlympiad)
                             <div class="panel">
@@ -36,7 +35,7 @@
                                         <td>{{ $room->room }}</td>
                                         <td>{{ $room->seats }}</td>
                                         <td class="text-right">
-                                            <a class="btn btn-default" href="{{ url('/rooms/'.$olympiad->id.'/edit') }}">Edit</a>
+                                            <a class="btn btn-default" href="{{ route('rooms.edit', $olympiad->id) }}">@lang('labels.edit')</a>
                                             {{ Form::open(['method' => 'delete', 'route' => ['rooms.destroy', $room->id], 'style' => 'display:inline-block;' ]) }}
                                             {{ Form::submit(trans('labels.delete'), ['class' => 'btn btn-danger']) }}
                                             {{ Form::close() }}
@@ -47,7 +46,7 @@
                                 @endforelse
                             </table>
                         @else
-                            Select an olympiad.
+                            @lang('labels.olympiad.select_olympiad').
                         @endif
                     </div>
                 </div>

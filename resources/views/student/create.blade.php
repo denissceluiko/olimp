@@ -7,13 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">@lang('labels.student.create')</div>
                     <div class="panel-body">
-                        @if(count($errors))
-                            <div class="panel">
-                                @foreach($errors->all() as $error)
-                                    {{ $error }}
-                                @endforeach
-                            </div>
-                        @endif
+                        @include('snippets.errors')
                         {{ Form::open(['route' => 'students.store', 'method' => 'post', 'class' => '']) }}
                         <div class="form-group">
                             {{ Form::label('name', trans('labels.student.name'), ['class' => 'control-label']) }}

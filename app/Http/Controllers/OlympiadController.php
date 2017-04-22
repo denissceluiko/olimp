@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Olympiad;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -52,25 +53,15 @@ class OlympiadController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = array(
+        $this->validate($request, [
             'name'       => 'required',
             'date'       => 'required|date',
-        );
-        $validator = Validator::make($request->all(), $rules);
+        ]);
 
-        if ($validator->fails()) {
-            return Redirect::to('olympiads/create')
-                ->withErrors($validator)
-                ->withInput();
-        } else {
-            $oly = new Olympiad;
-            $oly->name       = $request->get('name');
-            $oly->date       = $request->get('date');
-            $oly->save();
+        Olympiad::create($request->only(['name', 'date']));
+        Session::flash('message.olympiad_added', $request->name);
+        return redirect()->route('olympiads.index');
 
-            Session::flash('message', $oly->name.' added');
-            return Redirect::to('olympiads');
-        }
     }
 
     /**

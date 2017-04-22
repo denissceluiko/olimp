@@ -6,13 +6,12 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">@lang('labels.olympiad.list')</div>
-
                     <div class="panel-body">
                         <table class="table table-striped col-md-12">
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
-                                <th>Date</th>
+                                <th>@lang('labels.olympiad.name')</th>
+                                <th>@lang('labels.olympiad.date')</th>
                                 <th></th>
                             </tr>
                             @forelse($olympiads as $olympiad)
@@ -21,12 +20,12 @@
                                     <td>{{ $olympiad->name }}</td>
                                     <td>{{ $olympiad->date }}</td>
                                     <td>
-                                        <a class="btn btn-default" href="{{ url('/olympiads/'.$olympiad->id.'/edit') }}">Edit</a>
-                                        <a class="btn btn-primary" href="{{ url('/olympiads/'.$olympiad->id.'/select') }}">Use</a>
+                                        <a class="btn btn-default" href="{{ route('olympiads.edit', $olympiad->id) }}">@lang('labels.edit')</a>
+                                        <a class="btn btn-primary" href="{{ route('olympiads.select', $olympiad->id) }}">@lang('labels.use')</a>
                                     </td>
                                 </tr>
                             @empty
-                                <tr><td colspan="3">@lang('labels.olympiads.empty')</td></tr>
+                                <tr><td colspan="3">@lang('labels.olympiad.empty')</td></tr>
                             @endforelse
                         </table>
                     </div>

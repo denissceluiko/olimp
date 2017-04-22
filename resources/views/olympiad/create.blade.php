@@ -5,48 +5,22 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Add olympiad</div>
-
+                    <div class="panel-heading">@lang('labels.olympiad.create')</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/olympiads') }}">
-                            {{ csrf_field() }}
-
-                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-4 control-label">Name</label>
-
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                                    @if ($errors->has('name'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">Date</label>
-
-                                <div class="col-md-6">
-                                    <input id="date" type="text" class="form-control" name="date" value="{{ old('date') }}" required>
-
-                                    @if ($errors->has('date'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('date') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
+                        @include('snippets.errors')
+                        {{ Form::open(['route' => 'olympiads.store', 'method' => 'post']) }}
+                            <div class="form-group">
+                                {{ Form::label('name', trans('labels.olympiad.name'), ['class' => 'control-label']) }}
+                                {{ Form::text('name', null, ['class' => 'form-control', 'required']) }}
                             </div>
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Add
-                                    </button>
-                                </div>
+                                {{ Form::label('date', trans('labels.olympiad.date'), ['class' => 'control-label']) }}
+                                {{ Form::text('date', null, ['class' => 'form-control', 'required', 'placeholder' => 'YYYY-MM-DD']) }}
                             </div>
-                        </form>
-
+                            <div class="form-group">
+                                {{ Form::submit(trans('labels.submit'), ['class' => 'form-control btn btn-primary']) }}
+                            </div>
+                        {{ Form::close() }}
                     </div>
                 </div>
             </div>

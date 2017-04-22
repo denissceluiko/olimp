@@ -6,7 +6,6 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">@lang('labels.school.list')</div>
-
                     <div class="panel-body">
                         <div class="panel">
                             {{ Form::open(['route' => 'schools.store', 'method' => 'post', 'class' => 'form-inline']) }}
@@ -15,7 +14,7 @@
                                 {{ Form::text('name', null, ['class' => 'form-control', 'required']) }}
                             </div>
                             <div class="form-group">
-                                {{ Form::submit(trans('labels.add'), ['class' => 'btn btn-primary']) }}
+                                {{ Form::submit(trans('labels.add'), ['class' => 'form-control btn btn-primary']) }}
                             </div>
                             {{ Form::close() }}
                         </div>
@@ -32,8 +31,8 @@
                                     <td class="hidden-xs">{{ $school->city }}</td>
                                     <td class="hidden-xs">{{ $school->language }}</td>
                                     <td class="text-right">
-                                        <a class="btn btn-default" href="{{ url('/schools/'.$school->id.'/edit') }}">Edit</a>
-                                        {{ Form::open(['method' => 'delete', 'route' => ['schools.destroy', $school['id']], 'style' => 'display:inline-block;' ]) }}
+                                        <a class="btn btn-default" href="{{ route('schools.edit', $school->id) }}">@lang('labels.edit')</a>
+                                        {{ Form::open(['method' => 'delete', 'route' => ['schools.destroy', $school->id], 'style' => 'display:inline-block;']) }}
                                         {{ Form::submit(trans('labels.delete'), ['class' => 'btn btn-danger']) }}
                                         {{ Form::close() }}
                                     </td>

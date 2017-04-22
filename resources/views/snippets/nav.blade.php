@@ -4,7 +4,7 @@
 
             <!-- Collapsed Hamburger -->
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                <span class="sr-only">Toggle Navigation</span>
+                <span class="sr-only">@lang('labels.toggle_nav')</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -27,8 +27,8 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="{{ url('/students') }}">List</a>
-                                <a href="{{ url('/students/create') }}">Add</a>
+                                <a href="{{ route('students.index') }}">@lang('labels.list')</a>
+                                <a href="{{ route('students.create') }}">@lang('labels.add')</a>
                             </li>
                         </ul>
                     </li>
@@ -41,8 +41,8 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="{{ url('/schools') }}">List</a>
-                                <a href="{{ url('/schools/create') }}">Add</a>
+                                <a href="{{ route('schools.index') }}">@lang('labels.list')</a>
+                                <a href="{{ route('schools.create') }}">@lang('labels.add')</a>
                             </li>
                         </ul>
                     </li>
@@ -62,8 +62,8 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="{{ url('/olympiads') }}">List</a>
-                                <a href="{{ url('/olympiads/create') }}">Add</a>
+                                <a href="{{ route('olympiads.index') }}">@lang('labels.list')</a>
+                                <a href="{{ route('olympiads.create') }}">@lang('labels.add')</a>
                             </li>
                         </ul>
                     </li>
@@ -74,15 +74,15 @@
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::check() )
                     <li class="dropdown">
-                        <a href="{{ url('/olympiads/'.Auth::user()->activeOlympiad->id) }}" class="dropdown-toggle" role="button">
+                        <a href="{{ route('olympiads.show', Auth::user()->activeOlympiad->id) }}" class="dropdown-toggle" role="button">
                             {{ Auth::user()->activeOlympiad->name }}
                         </a>
                     </li>
                 @endif
             <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Login</a></li>
-                    <li><a href="{{ url('/register') }}">Register</a></li>
+                    <li><a href="{{ route('login') }}">@lang('labels.login')</a></li>
+                    <li><a href="{{ route('register') }}">@lang('labels.register')</a></li>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -91,13 +91,13 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="{{ url('/logout') }}"
+                                <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     Logout
                                 </a>
 
-                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
                             </li>

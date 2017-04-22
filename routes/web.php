@@ -19,7 +19,7 @@ Route::get('/lang/{language}', function($language) {
     App::setLocale($language);
 });
 
-Route::get('/olympiads/{olympiad}/select/', 'OlympiadController@select');
+Route::get('/olympiads/{olympiad}/select/', 'OlympiadController@select')->name('olympiads.select');
 Route::resource('/olympiads', 'OlympiadController');
 
 Route::post('/students/import', 'StudentController@import');

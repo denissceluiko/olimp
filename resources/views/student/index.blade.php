@@ -6,7 +6,6 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">@lang('labels.student.list')</div>
-
                     <div class="panel-body">
                         <table class="table table-striped col-md-12">
                             <tr>
@@ -21,7 +20,7 @@
                                     <td>{{ $student->surname }}</td>
                                     <td>{{ $student->school->name }}</td>
                                     <td class="text-right">
-                                        <a class="btn btn-default" href="{{ route('students.edit', $student->id) }}">Edit</a>
+                                        <a class="btn btn-default" href="{{ route('students.edit', $student->id) }}">@lang('labels.edit')</a>
                                         {{ Form::open(['method' => 'delete', 'route' => ['schools.destroy', $student->id], 'style' => 'display:inline-block;' ]) }}
                                         {{ Form::submit(trans('labels.delete'), ['class' => 'btn btn-danger']) }}
                                         {{ Form::close() }}

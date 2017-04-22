@@ -44,8 +44,18 @@ return [
     'olympiad' => [
         'list' => 'Olympiad list',
         'empty' => 'List is empty',
+        'edit' => 'Edit olympiad',
+        'create' => 'Create olympiad',
+        'name' => 'Name',
+        'date' => 'Date',
+        'select_olympiad' => 'Select an olympiad',
     ],
     'add' => 'Add',
     'edit' => 'Edit',
+    'list' => 'List',
+    'submit' => 'Submit',
+    'save' => 'Save',
     'delete' => 'Delete',
+    'use' => 'Use',
+    'toggle_nav' => 'Toggle navigation',
 ];
