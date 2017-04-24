@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">@lang('labels.olympiad.list')</div>
+                    <div class="panel-heading">@lang('labels.participant.list')</div>
                     <div class="panel-body">
                         <table class="table table-striped col-md-12">
                             <thead>
