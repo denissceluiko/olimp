@@ -25,7 +25,7 @@ Route::resource('/olympiads', 'OlympiadController');
 Route::post('/students/import', 'StudentController@import');
 Route::resource('/students', 'StudentController');
 
-Route::post('/schools/import', 'SchoolController@import');
+Route::post('/schools/import', 'SchoolController@import')->name('schools.import');
 Route::resource('/schools', 'SchoolController');
 
 Route::post('/rooms/import', 'RoomController@import');
