@@ -14,12 +14,15 @@ class CreateParticipantsTable extends Migration
     public function up()
     {
         Schema::create('participants', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('student_id')->unsigned();
             $table->integer('olympiad_id')->unsigned();
-            $table->integer('room_id')->unsigned();
+            $table->integer('room_id')->unsigned()->nullable();
+            $table->timestamp('start')->nullable();
+            $table->timestamp('finish')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->primary(['student_id', 'olympiad_id']);
 
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('olympiad_id')->references('id')->on('olympiads')->onDelete('cascade')->onUpdate('cascade');

@@ -15,7 +15,7 @@
                             </div>
                             <div class="form-group">
                                 {{ Form::label('date', trans('labels.olympiad.date'), ['class' => 'control-label']) }}
-                                {{ Form::text('date', null, ['class' => 'form-control', 'required', 'placeholder' => 'YYYY-MM-DD']) }}
+                                {{ Form::text('date', \Carbon\Carbon::now()->toDateString(), ['class' => 'form-control', 'required', 'placeholder' => 'YYYY-MM-DD']) }}
                             </div>
                             <div class="form-group">
                                 {{ Form::submit(trans('labels.submit'), ['class' => 'form-control btn btn-primary']) }}

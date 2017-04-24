@@ -22,6 +22,20 @@
                 @if (Auth::check())
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            @lang('labels.participants') <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ route('participants.index') }}">@lang('labels.list')</a>
+                                <a href="{{ route('participants.create') }}">@lang('labels.add')</a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+                @if (Auth::check())
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             @lang('labels.students') <span class="caret"></span>
                         </a>
 

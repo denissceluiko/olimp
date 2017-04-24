@@ -59,7 +59,7 @@ class OlympiadController extends Controller
         ]);
 
         Olympiad::create($request->only(['name', 'date']));
-        Session::flash('message.olympiad_added', $request->name);
+        Session::flash('msg', trans('messages.olympiad_added', ['name' => $request->name]));
         return redirect()->route('olympiads.index');
 
     }

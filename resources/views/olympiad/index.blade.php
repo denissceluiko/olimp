@@ -18,7 +18,7 @@
                                 <tr>
                                     <td>{{ $olympiad->id }}</td>
                                     <td>{{ $olympiad->name }}</td>
-                                    <td>{{ $olympiad->date }}</td>
+                                    <td>{{ $olympiad->date->toDateString() }}</td>
                                     <td>
                                         <a class="btn btn-default" href="{{ route('olympiads.edit', $olympiad->id) }}">@lang('labels.edit')</a>
                                         <a class="btn btn-primary" href="{{ route('olympiads.select', $olympiad->id) }}">@lang('labels.use')</a>

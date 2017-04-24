@@ -23,6 +23,7 @@
 <body>
     <div id="app">
         @include('snippets.nav')
+        @include('snippets.message')
         @yield('content')
     </div>
 

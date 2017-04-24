@@ -13,6 +13,10 @@ class Student extends Model
     protected $dates = ['deleted_at'];
 
     public function school() {
-        return $this->belongsTo('App\School');
+        return $this->belongsTo(School::class);
+    }
+
+    public function olympiads() {
+        return $this->belongsToMany(Olympiad::class, 'participants');
     }
 }

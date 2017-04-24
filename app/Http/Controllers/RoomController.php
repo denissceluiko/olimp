@@ -30,9 +30,8 @@ class RoomController extends Controller
     public function index()
     {
         $this->authorize('room.index');
-        $res = Auth::user()->activeOlympiad->rooms()->get();
 
-        return view('room.index', ['rooms' => $res, 'olympiad' => Auth::user()->activeOlympiad]);
+        return view('room.index');
     }
 
     /**

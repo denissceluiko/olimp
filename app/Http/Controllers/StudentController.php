@@ -49,11 +49,15 @@ class StudentController extends Controller
             'name' => 'required',
             'surname' => 'required',
             'school' => 'required|exists:schools,id',
-            'grade' => 'required|numeric|min:3|max:6'
+            'grade' => 'required|numeric|min:3|max:6',
+            'olympiad_id' => 'nullable|exists:olympiads,id'
         ]);
 
         $student = new Student($request->only(['name', 'surname', 'grade']));
         $student->school()->associate($request['school'])->save();
+        if ($request->olympiad_id) {
+            $student->olympiads()->attach($request->olympiad_id);
+        }
         return redirect()->route('students.index');
     }
 

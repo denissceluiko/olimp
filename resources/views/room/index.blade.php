@@ -30,12 +30,12 @@
                                     <th>@lang('labels.room.seats')</th>
                                     <th></th>
                                 </tr>
-                                @forelse($rooms as $room)
+                                @forelse(Auth::user()->activeOlympiad->rooms()->get() as $room)
                                     <tr>
                                         <td>{{ $room->room }}</td>
                                         <td>{{ $room->seats }}</td>
                                         <td class="text-right">
-                                            <a class="btn btn-default" href="{{ route('rooms.edit', $olympiad->id) }}">@lang('labels.edit')</a>
+                                            <a class="btn btn-default" href="{{ route('rooms.edit', Auth::user()->activeOlympiad->id) }}">@lang('labels.edit')</a>
                                             {{ Form::open(['method' => 'delete', 'route' => ['rooms.destroy', $room->id], 'style' => 'display:inline-block;' ]) }}
                                             {{ Form::submit(trans('labels.delete'), ['class' => 'btn btn-danger']) }}
                                             {{ Form::close() }}
@@ -46,7 +46,7 @@
                                 @endforelse
                             </table>
                         @else
-                            @lang('labels.olympiad.select_olympiad').
+                            <div class=""><a href="{{ route('olympiads.index') }}">@lang('labels.olympiad.select_olympiad')</a>
                         @endif
                     </div>
                 </div>

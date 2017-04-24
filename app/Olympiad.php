@@ -17,7 +17,7 @@ class Olympiad extends Model
     }
     
     public function participants() {
-        return $this->hasMany(Participant::class);
+        return $this->belongsToMany(Student::class, 'participants');
     }
 
     public function users() {

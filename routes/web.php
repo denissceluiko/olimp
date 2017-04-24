@@ -30,3 +30,6 @@ Route::resource('/schools', 'SchoolController');
 
 Route::post('/rooms/import', 'RoomController@import');
 Route::resource('/rooms', 'RoomController');
+
+Route::post('/participants/import', 'ParticipantController@import');
+Route::resource('/participants', 'ParticipantController');

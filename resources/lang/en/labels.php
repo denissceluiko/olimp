@@ -22,7 +22,12 @@ return [
             '4' => '4. klase',
             '5' => '5. klase',
             '6' => '6. klase',
-        ]
+        ],
+        'olympiad' => 'Olympiad',
+    ],
+    'participants' => 'Participants',
+    'participant' => [
+
     ],
     'schools' => 'Schools',
     'school' => [
@@ -30,7 +35,9 @@ return [
         'empty' => 'List is empty',
         'name' => 'School name',
         'city' => 'City',
+        'import' => 'Import schools',
         'language' => 'Language',
+        'file' => '',
     ],
     'rooms' => 'Rooms',
     'room' => [
@@ -47,7 +54,7 @@ return [
         'edit' => 'Edit olympiad',
         'create' => 'Create olympiad',
         'name' => 'Name',
-        'date' => 'Date',
+        'date' => 'Olympiad date',
         'select_olympiad' => 'Select an olympiad',
     ],
     'add' => 'Add',
