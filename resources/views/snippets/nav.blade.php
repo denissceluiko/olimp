@@ -72,7 +72,7 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
-                @if (Auth::check() )
+                @if (Auth::check() && Auth::user()->activeOlympiad)
                     <li class="dropdown">
                         <a href="{{ route('olympiads.show', Auth::user()->activeOlympiad->id) }}" class="dropdown-toggle" role="button">
                             {{ Auth::user()->activeOlympiad->name }}
