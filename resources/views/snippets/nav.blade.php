@@ -54,9 +54,16 @@
                 @endcan
                 @can('rooms.create')
                     <li class="dropdown">
-                        <a href="{{ route('rooms.index') }}" role="button">
-                            @lang('labels.rooms')
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            @lang('labels.rooms') <span class="caret"></span>
                         </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ route('rooms.index') }}">@lang('labels.list')</a>
+                                <a href="{{ route('rooms.create') }}">@lang('labels.add')</a>
+                            </li>
+                        </ul>
                     </li>
                 @endcan
                 @can('olympiads.create')

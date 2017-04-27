@@ -53,6 +53,8 @@ return [
         'list' => 'Room list',
         'empty' => 'List is empty',
         'room' => 'Room',
+        'import' => 'Room import',
+        'file' => 'Import csv file',
         'room_id' => 'Room ID',
         'seats' => 'Seats',
     ],

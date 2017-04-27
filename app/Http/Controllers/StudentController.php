@@ -37,7 +37,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        $this->authorize('school.create');
+        $this->authorize('student.create');
         return view('student.create');
     }
 
@@ -49,7 +49,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('school.create');
+        $this->authorize('student.create');
 
         $this->validate($request, [
             'name' => 'required',
@@ -108,7 +108,7 @@ class StudentController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function import(Request $request) {
-        $this->authorize('school.create');
+        $this->authorize('student.create');
 
         $this->validate($request, [
             'olympiad_id' => 'required|exists:olympiads,id',

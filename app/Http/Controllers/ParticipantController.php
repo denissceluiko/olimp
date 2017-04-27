@@ -114,7 +114,7 @@ class ParticipantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function assignRoom(Request $request, $student) {
-        $this->authorize('participants.assign');
+        $this->authorize('participant.assign');
 
         $data = [
             'student_id' => $student,
@@ -134,6 +134,7 @@ class ParticipantController extends Controller
         if($olympiad->pivot->room_id) return response()->make(trans('labels.room.already_assigned'), 400);
 
         $room = Room::getRoom($olympiad->pivot->grade);
+        if (!$room) return response()->make('labels.room.none_available', 500);
         $res->olympiads()->updateExistingPivot($data['olympiad_id'], ['room_id' => $room]);
         return response()->make('');
     }

@@ -26,22 +26,23 @@ class InitialDataSeeder extends Seeder
         $ru->save();
 
         $perms = [
-            'users.create' => 'permissions.users.create',
-            'users.delete' => 'permissions.users.delete',
-            'olympiads.create' => 'permissions.olympiads.create',
-            'olympiads.edit' => 'permissions.olympiads.edit',
-            'schools.list' => 'permissions.schools.list',
-            'schools.create' => 'permissions.schools.create',
-            'schools.edit' => 'permissions.schools.edit',
-            'students.create' => 'permissions.students.create',
-            'students.edit' => 'permissions.students.edit',
-            'rooms.create' => 'permissions.rooms.create',
-            'rooms.edit' => 'permissions.rooms.edit',
-            'participants.index' => 'permissions.participants.index',
-            'participants.assign' => 'permissions.participants.assign',
+            'user.create' => 'permissions.user.create',
+            'user.delete' => 'permissions.user.delete',
+            'olympiad.index' => 'permissions.olympiad.index',
+            'olympiad.create' => 'permissions.olympiad.create',
+            'olympiad.edit' => 'permissions.olympiad.edit',
+            'school.list' => 'permissions.school.list',
+            'school.create' => 'permissions.school.create',
+            'school.edit' => 'permissions.school.edit',
+            'student.create' => 'permissions.student.create',
+            'student.edit' => 'permissions.student.edit',
+            'room.create' => 'permissions.room.create',
+            'room.edit' => 'permissions.room.edit',
+            'participant.index' => 'permissions.participant.index',
+            'participant.assign' => 'permissions.participant.assign',
         ];
 
-        $regularUserPerms = ['participants.index', 'participants.assign'];
+        $regularUserPerms = ['participant.index', 'participant.assign', 'olympiad.index'];
 
         foreach ($perms as $name => $label) {
             $p = new \App\Permission(compact('name', 'label'));
