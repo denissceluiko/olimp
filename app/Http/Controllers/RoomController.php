@@ -53,6 +53,7 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('room.create');
         $this->validate($request, [
             'room'        => 'required',
             'olympiad'    => 'required|integer|exists:olympiads,id',
@@ -99,6 +100,8 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('room.edit');
+
         $rules = array(
             'room'        => 'required|integer',
             'seats'       => 'required|integer',
@@ -120,6 +123,7 @@ class RoomController extends Controller
     }
 
     public function import(Request $request) {
+        $this->authorize('room.create');
         $this->validate($request, [
             'olympiad' => 'required|exists:olympiads,id',
             'room_list' => 'required|mimes:csv,txt|max:1000'

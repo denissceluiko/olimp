@@ -19,12 +19,12 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                @if (Auth::check())
+                @can('participants.assign')
                     <li class="dropdown">
                         <a href="{{ route('participants.index') }}">@lang('labels.participants')</a>
                     </li>
-                @endif
-                @if (Auth::check())
+                @endcan
+                @can('students.create')
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             @lang('labels.students') <span class="caret"></span>
@@ -37,8 +37,8 @@
                             </li>
                         </ul>
                     </li>
-                @endif
-                @if (Auth::check())
+                @endcan
+                @can('schools.create')
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             @lang('labels.schools') <span class="caret"></span>
@@ -51,15 +51,15 @@
                             </li>
                         </ul>
                     </li>
-                @endif
-                @if (Auth::check())
+                @endcan
+                @can('rooms.create')
                     <li class="dropdown">
                         <a href="{{ route('rooms.index') }}" role="button">
                             @lang('labels.rooms')
                         </a>
                     </li>
-                @endif
-                @if (Auth::check())
+                @endcan
+                @can('olympiads.create')
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             @lang('labels.olympiads') <span class="caret"></span>
@@ -72,7 +72,7 @@
                             </li>
                         </ul>
                     </li>
-                @endif
+                @endcan
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -87,7 +87,6 @@
             <!-- Authentication Links -->
                 @if (Auth::guest())
                     <li><a href="{{ route('login') }}">@lang('labels.login')</a></li>
-                    <li><a href="{{ route('register') }}">@lang('labels.register')</a></li>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

@@ -14,6 +14,8 @@ return [
         'name' => 'Name',
         'surname' => 'Surname',
         'list' => 'Student list',
+        'import' => 'Student import',
+        'file' => 'Student list file',
         'school' => 'School',
         'create' => 'Add student',
         'grade' => 'Grade',

@@ -53,7 +53,7 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            {{ Form::label('student_list', trans('labels.students.file'), ['class' => 'control-label']) }}
+                            {{ Form::label('student_list', trans('labels.student.file'), ['class' => 'control-label']) }}
                             {{ Form::file('student_list', ['class' => 'form-control', 'accept' => 'text/csv']) }}
                         </div>
                         {{ Form::submit(trans('labels.submit'), ['class' => 'form-control btn btn-primary']) }}

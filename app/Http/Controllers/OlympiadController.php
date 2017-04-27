@@ -53,6 +53,7 @@ class OlympiadController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('olympiad.create');
         $this->validate($request, [
             'name'       => 'required',
             'date'       => 'required|date',
@@ -96,6 +97,8 @@ class OlympiadController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('olympiad.edit');
+
         $rules = array(
             'name'       => 'required',
             'date'       => 'required|date',

@@ -120,6 +120,8 @@ class SchoolController extends Controller
      *
      */
     public function import(Request $request) {
+        $this->authorize('school.create');
+
         $this->validate($request, [
             'school_list' => 'required|mimes:csv,txt|max:1000'
         ]);

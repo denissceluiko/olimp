@@ -114,6 +114,8 @@ class ParticipantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function assignRoom(Request $request, $student) {
+        $this->authorize('participants.assign');
+
         $data = [
             'student_id' => $student,
             'olympiad_id' => $request->olympiad_id ?: Auth::user()->activeOlympiad->id,
