@@ -18,7 +18,6 @@ class CreateStudentsTable extends Migration
             $table->string('name', 30);
             $table->string('surname', 30);
             $table->integer('school_id')->unsigned();
-            $table->integer('grade');
             $table->timestamps();
             $table->softDeletes();
 

@@ -7,31 +7,24 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">@lang('labels.participant.list')</div>
                     <div class="panel-body">
-                        <table class="table table-striped col-md-12">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>@lang('labels.olympiad.name')</th>
-                                    <th>@lang('labels.olympiad.date')</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($olympiads as $olympiad)
-                                    <tr>
-                                        <td>{{ $olympiad->id }}</td>
-                                        <td>{{ $olympiad->name }}</td>
-                                        <td>{{ $olympiad->date->toDateString() }}</td>
-                                        <td>
-                                            <a class="btn btn-default" href="{{ route('olympiads.edit', $olympiad->id) }}">@lang('labels.edit')</a>
-                                            <a class="btn btn-primary" href="{{ route('olympiads.select', $olympiad->id) }}">@lang('labels.use')</a>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr><td colspan="3">@lang('labels.olympiad.empty')</td></tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                        <div class="panel">
+                            @if(Auth::user()->activeOlympiad)
+                                {{ Form::open(['route' => 'participants.search', 'method' => 'post', 'class' => 'form-inline', 'id' => 'participant-search-form']) }}
+                                <div class="form-group">
+                                    {{ Form::label('query_str', trans('labels.search.query'), ['class' => 'control-label']) }}
+                                    {{ Form::text('query_str', null, ['class' => 'form-control', 'required']) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ Form::submit(trans('labels.search.find'), ['class' => 'form-control btn btn-primary']) }}
+                                </div>
+                                {{ Form::close() }}
+                            @else
+                                <div class=""><a href="{{ route('olympiads.index') }}">@lang('labels.olympiad.select_olympiad')</a>
+                            @endif
+                        </div>
+                        @if(count($students))
+                            @include('snippets.participantList')
+                        @endif
                     </div>
                 </div>
             </div>

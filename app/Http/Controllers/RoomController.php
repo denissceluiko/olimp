@@ -53,26 +53,19 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = array(
+        $this->validate($request, [
             'room'        => 'required',
-            'olympiad'    => 'required|integer',
+            'olympiad'    => 'required|integer|exists:olympiads,id',
             'seats'       => 'required|integer',
-        );
-        $validator = Validator::make($request->all(), $rules);
+        ]);
 
-        if ($validator->fails()) {
-            return Redirect::to('/rooms/create')
-                ->withErrors($validator)
-                ->withInput($request->all());
-        } else {
-            $room = new Room;
-            $room->room   = $request->get('room');
-            $room->olympiad()->associate(Olympiad::find($request->get('olympiad')));
-            $room->seats  = $request->get('seats');
-            $room->save();
+        $room = new Room($request->only(['room', 'seats']));
+        $room->olympiad()
+            ->associate($request->olympiad)
+            ->save();
 
-            return Redirect::to('/rooms/');
-        }
+        return Redirect::route('rooms.index');
+
     }
 
     /**
@@ -124,6 +117,32 @@ class RoomController extends Controller
 
             return Redirect::to('rooms/');
         }
+    }
+
+    public function import(Request $request) {
+        $this->validate($request, [
+            'olympiad' => 'required|exists:olympiads,id',
+            'room_list' => 'required|mimes:csv,txt|max:1000'
+        ]);
+
+        $file = $request->file('room_list')->openFile();
+
+        $failed = [];
+        $row = $file->fgetcsv(); // Get headers
+
+        while ($row = $file->fgetcsv()) {
+            if ($row[0] == "") continue;
+
+            $data = [
+                'room' => $row[0],
+                'seats' => $row[1],
+            ];
+
+            $room = new Room($data);
+            $room->olympiad()->associate($request->olympiad)->save();
+        }
+
+        return redirect()->route('rooms.index');
     }
 
     /**

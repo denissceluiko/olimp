@@ -27,7 +27,14 @@ return [
     ],
     'participants' => 'Participants',
     'participant' => [
-
+        'assign' => 'Assign room',
+        'list' => 'Participant list',
+    ],
+    'search' => [
+        'query' => 'Query',
+        'find' => 'Find',
+        'list' => 'Participant list',
+        'no_results' => 'Found no records matching your query.',
     ],
     'schools' => 'Schools',
     'school' => [
@@ -64,5 +71,6 @@ return [
     'save' => 'Save',
     'delete' => 'Delete',
     'use' => 'Use',
+    'remove' => 'Remove',
     'toggle_nav' => 'Toggle navigation',
 ];

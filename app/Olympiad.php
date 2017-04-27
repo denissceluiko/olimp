@@ -17,7 +17,16 @@ class Olympiad extends Model
     }
     
     public function participants() {
-        return $this->belongsToMany(Student::class, 'participants');
+        return $this->belongsToMany(Student::class, 'participants')
+            ->using(Participant::class)
+            ->withTimestamps()
+            ->withPivot(['room_id']);
+    }
+
+    public function participantsSearch($query) {
+        return $this->belongsToMany(Student::class, 'participants')
+            ->where('name', 'like', '%'.$query.'%')
+            ->orWhere('surname', 'like', '%'.$query.'%');
     }
 
     public function users() {

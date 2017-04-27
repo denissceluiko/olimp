@@ -2,24 +2,26 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Participant extends Model
+class Participant extends Pivot
 {
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
 
     public function student() {
-        return $this->belongsTo('App\Student');
+        return $this->belongsTo(Student::class);
     }
 
     public function olympiad() {
-        return $this->belongsTo('App\Olympiad');
+        return $this->belongsTo(Olympiad::class);
     }
 
     public function room() {
-        return $this->belongsTo('App\Room');
+        return $this->belongsTo(Room::class);
     }
 }

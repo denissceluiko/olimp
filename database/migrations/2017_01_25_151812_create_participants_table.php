@@ -17,6 +17,7 @@ class CreateParticipantsTable extends Migration
             $table->integer('student_id')->unsigned();
             $table->integer('olympiad_id')->unsigned();
             $table->integer('room_id')->unsigned()->nullable();
+            $table->integer('grade')->unsigned()->nullable();
             $table->timestamp('start')->nullable();
             $table->timestamp('finish')->nullable();
             $table->timestamps();

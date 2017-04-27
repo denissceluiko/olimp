@@ -33,7 +33,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse(Auth::user()->activeOlympiad->rooms()->get() as $room)
+                                    @forelse(Auth::user()->activeOlympiad->rooms()->orderBy('room')->get() as $room)
                                         <tr>
                                             <td>{{ $room->room }}</td>
                                             <td>{{ $room->seats }}</td>
