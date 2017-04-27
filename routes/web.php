@@ -35,3 +35,5 @@ Route::post('/participants/import', 'ParticipantController@import')->name('parti
 Route::post('/participants/search', 'ParticipantController@search')->name('participants.search');
 Route::post('/participants/assign/{student}', 'ParticipantController@assignRoom')->name('participants.assign');
 Route::resource('/participants', 'ParticipantController');
+
+Route::resource('/users', 'UserController');

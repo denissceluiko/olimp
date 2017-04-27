@@ -68,6 +68,10 @@ return [
         'date' => 'Olympiad date',
         'select_olympiad' => 'Select an olympiad',
     ],
+    'users' => 'Users',
+    'user' => [
+        'list' => 'User list'
+    ],
     'add' => 'Add',
     'edit' => 'Edit',
     'list' => 'List',

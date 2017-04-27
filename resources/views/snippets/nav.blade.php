@@ -19,12 +19,12 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                @can('participants.assign')
+                @can('participant.assign')
                     <li class="dropdown">
                         <a href="{{ route('participants.index') }}">@lang('labels.participants')</a>
                     </li>
                 @endcan
-                @can('students.create')
+                @can('student.create')
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             @lang('labels.students') <span class="caret"></span>
@@ -38,7 +38,7 @@
                         </ul>
                     </li>
                 @endcan
-                @can('schools.create')
+                @can('school.create')
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             @lang('labels.schools') <span class="caret"></span>
@@ -52,7 +52,7 @@
                         </ul>
                     </li>
                 @endcan
-                @can('rooms.create')
+                @can('room.create')
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             @lang('labels.rooms') <span class="caret"></span>
@@ -66,7 +66,7 @@
                         </ul>
                     </li>
                 @endcan
-                @can('olympiads.create')
+                @can('olympiad.create')
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             @lang('labels.olympiads') <span class="caret"></span>
@@ -80,6 +80,20 @@
                         </ul>
                     </li>
                 @endcan
+                    @can('users.create')
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                @lang('labels.users') <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{ route('users.index') }}">@lang('labels.list')</a>
+                                    <a href="{{ route('users.create') }}">@lang('labels.add')</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endcan
             </ul>
 
             <!-- Right Side Of Navbar -->

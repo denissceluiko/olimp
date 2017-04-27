@@ -128,7 +128,7 @@ class OlympiadController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 
 

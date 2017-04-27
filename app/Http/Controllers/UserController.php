@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Olympiad;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +21,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('user.index');
+        return view('user.index', ['users' => User::all()]);
     }
 
     /**
@@ -30,7 +32,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('user.create');
+        return view('user.create');
     }
 
     /**
@@ -41,7 +44,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('user.create');
+
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'role' => 'required|exists:roles,id',
+        ]);
+
+        $student = new User($request->only(['name', 'email']));
+        $student->password = bcrypt($request->password);
+        $student->save();
+        $student->roles()->attach($request->role);
+        return redirect()->route('users.index');
     }
 
     /**
@@ -86,6 +102,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->authorize('user.delete');
+        User::find($id)->delete();
+        return back();
     }
 }

@@ -26,6 +26,7 @@ class InitialDataSeeder extends Seeder
         $ru->save();
 
         $perms = [
+            'user.index' => 'permissions.user.index',
             'user.create' => 'permissions.user.create',
             'user.delete' => 'permissions.user.delete',
             'olympiad.index' => 'permissions.olympiad.index',
