@@ -30,7 +30,7 @@ $(document).ready(function () {
 
             },
             success: function (result) {
-                //search(query);
+                search(query);
                 replaceStudentTable(result);
             }
         });

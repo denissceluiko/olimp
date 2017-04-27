@@ -24,6 +24,7 @@ class Student extends Model
 
     public function olympiads() {
         return $this->belongsToMany(Olympiad::class, 'participants')
+            ->withPivot(['grade', 'room_id'])
             ->using(Participant::class);
     }
 }

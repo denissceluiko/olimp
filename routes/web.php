@@ -33,5 +33,5 @@ Route::resource('/rooms', 'RoomController');
 
 Route::post('/participants/import', 'ParticipantController@import')->name('participants.import');
 Route::post('/participants/search', 'ParticipantController@search')->name('participants.search');
-Route::post('/participants/assign/{participant}', 'ParticipantController@assignRoom')->name('participants.assign');
+Route::post('/participants/assign/{student}', 'ParticipantController@assignRoom')->name('participants.assign');
 Route::resource('/participants', 'ParticipantController');

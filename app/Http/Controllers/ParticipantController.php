@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Olympiad;
 use App\Participant;
+use App\Room;
 use App\Student;
-use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ParticipantController extends Controller
 {
@@ -112,11 +113,10 @@ class ParticipantController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function assignRoom(Request $request) {
-        if (!$request->has('student_id')) return abort(400);
+    public function assignRoom(Request $request, $student) {
         $data = [
-            'student_id' => $request->student_id,
-            'olympiad_id' => $request->olympiad_id ?: Auth::user()->activeOlympiad,
+            'student_id' => $student,
+            'olympiad_id' => $request->olympiad_id ?: Auth::user()->activeOlympiad->id,
         ];
 
         $validator = Validator::make($data, [
@@ -124,11 +124,16 @@ class ParticipantController extends Controller
             'olympiad_id' => 'required|integer',
         ]);
 
-        if($validator->fails) return false;
+        if($validator->fails()) return abort(400);
 
-        $res = Room::getRoom();
-        dd($res);
-        return true;
+        $res = Student::findOrFail($student);
+        $olympiad = $res->olympiads()->find($data['olympiad_id']);
+
+        if($olympiad->pivot->room_id) return response()->make(trans('labels.room.already_assigned'), 400);
+
+        $room = Room::getRoom($olympiad->pivot->grade);
+        $res->olympiads()->updateExistingPivot($data['olympiad_id'], ['room_id' => $room]);
+        return response()->make('');
     }
 
     /**
